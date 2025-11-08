@@ -1,0 +1,12 @@
+body { min-height: 100vh; }
+
+.stat { padding: .75rem; border: 1px solid rgba(0,0,0,.08); border-radius: .5rem; }
+
+.stat-label { font-size: .8rem; color: #6c757d; }
+
+.stat-value { font-weight: 600; }
+
+.card-title { letter-spacing: .3px; }
+
+#forecastGrid .card { height: 100%; }
+ 
