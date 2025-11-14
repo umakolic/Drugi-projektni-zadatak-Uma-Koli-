@@ -1,4 +1,4 @@
-// === KONFIGURACIJA ===
+
 const API_KEY = "6d1bdc281734a452aae1e25f1189f4ae"
 const BASE = "https://api.openweathermap.org/data/2.5";
 const els = {
@@ -46,7 +46,7 @@ function groupByDay(list) {
    return { date, item: arr[0] };
  });
 }
-// === RENDER ===
+
 function renderCurrent(data) {
  const { name } = data;
  const w = data.weather[0];
@@ -87,7 +87,7 @@ function renderForecast(list) {
  });
  els.forecastSection.classList.remove("d-none");
 }
-// === API POZIVI ===
+
 async function fetchWeather(city) {
  const q = encodeURIComponent(city.trim());
  const urlNow = `${BASE}/weather?q=${q}&appid=${API_KEY}&units=${units}&lang=hr`;
@@ -102,7 +102,7 @@ async function fetchWeather(city) {
  renderCurrent(now);
  renderForecast(fc.list);
 }
-// === DOGAĐAJI ===
+
 els.form.addEventListener("submit", async (e) => {
  e.preventDefault();
  const city = els.cityInput.value;
@@ -121,18 +121,19 @@ els.form.addEventListener("submit", async (e) => {
    els.forecastSection.classList.add("d-none");
  }
 });
-// toggle °C/°F
+
 els.unitToggle.addEventListener("change", () => {
  units = els.unitToggle.checked ? "imperial" : "metric";
  els.unitLabel.textContent = els.unitToggle.checked ? "°F" : "°C";
  const last = localStorage.getItem("lastCity");
  if (last) fetchWeather(last).catch(()=>{});
 });
-// auto-load posljednjeg grada
+
 window.addEventListener("DOMContentLoaded", () => {
  const last = localStorage.getItem("lastCity");
  if (last) {
    els.cityInput.value = last;
    fetchWeather(last).catch(()=>{});
  }
+
 });
